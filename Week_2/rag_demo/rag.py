@@ -7,7 +7,7 @@
 #   pip install -r requirements.txt
 #
 # Usage:
-#   python rag.py build --data_dir ./data --index_dir ./rag_index
+#   python rag.py build --data_dir ./data_code_translation_log --index_dir ./rag_index
 #   python rag.py ask --index_dir ./rag_index --model llama3.1 --top_k 5
 #
 # Put .txt/.md files in ./data before building.
@@ -92,7 +92,7 @@ def build_index(data_dir: str, index_dir: str, embed_model: str) -> None:
     out_path.mkdir(parents=True, exist_ok=True)
 
     files: List[Path] = []
-    for ext in ("*.txt", "*.md"):
+    for ext in ("*.txt", "*.md", "*.cpp", "*.py"):
         files.extend(sorted(data_path.rglob(ext)))
 
     if not files:

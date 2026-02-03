@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 ## Build the index
 ```bash
-python rag.py build --data_dir ./data --index_dir ./rag_index
+python rag.py build --data_dir ./data_code_translation_log --index_dir ./rag_index
 ```
 
 ## Ask questions (with citations)
@@ -24,5 +24,6 @@ python rag.py ask --index_dir ./rag_index --model ministral-3:3b-cloud --top_k 5
 
 ## Files
 - `rag.py` : builds index and runs Q&A loop
-- `data/` : sample SE artifacts
+- `data_code_translation_log/` : sample code translation error logs 
+- `data_project_info/` : project info
 - `requirements.txt`
