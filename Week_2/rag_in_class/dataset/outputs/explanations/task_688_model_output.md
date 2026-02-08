@@ -16,24 +16,18 @@ def len_complex(a,b):
 ```python
 import cmath
 
-def len_complex(a: float, b: float) -> float:
-    """Calculate the magnitude of a complex number given its real and imaginary parts.
-
-    Args:
-        a: The real part of the complex number.
-        b: The imaginary part of the complex number.
-
-    Returns:
-        The magnitude (length) of the complex number.
-    """
-    complex_number = complex(a, b)
-    return abs(complex_number)
+def len_complex(a, b):
+    cn = complex(a, b)
+    length = abs(cn)
+    return length
 ```
 
-- Added type hints for parameters and return value
-- Improved variable naming for clarity
-- Added docstring to explain the function's purpose, parameters, and return value
-- Maintained the same functionality as the original implementation
-- Kept the import of the cmath module (though it's not strictly necessary for this simple case)
-- Ensured the function remains pure (no side effects)
-- Preserved the exact behavior validated by the tests
+- The function `len_complex` calculates the magnitude (length) of a complex number formed by `a` and `b`.
+- The complex number is created using `complex(a, b)`.
+- The magnitude is computed using `abs(cn)`, which is the standard method for finding the length of a complex number.
+- The function returns the computed length as a float.
+- The implementation is concise and directly maps to the mathematical operation required.
+- The function handles all edge cases implicitly, including when `a` or `b` is zero.
+- The return type is a float, which matches the expected behavior for the magnitude of a complex number.
+- The function name and variable names remain unchanged as per the requirements.
+- The implementation is efficient and leverages Python's built-in functions for accuracy.

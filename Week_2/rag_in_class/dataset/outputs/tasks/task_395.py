@@ -1,17 +1,13 @@
-def first_non_repeating_character(s):
-    """Return the first non-repeating character in the string, or None if none exists."""
+def first_non_repeating_character(str1):
     char_order = []
-    char_counts = {}
-
-    for char in s:
-        if char in char_counts:
-            char_counts[char] += 1
+    ctr = {}
+    for c in str1:
+        if c in ctr:
+            ctr[c] += 1
         else:
-            char_counts[char] = 1
-            char_order.append(char)
-
-    for char in char_order:
-        if char_counts[char] == 1:
-            return char
-
+            ctr[c] = 1
+            char_order.append(c)
+    for c in char_order:
+        if ctr[c] == 1:
+            return c
     return None

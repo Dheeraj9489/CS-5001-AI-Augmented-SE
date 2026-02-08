@@ -1,18 +1,15 @@
 def amicable_numbers_sum(limit):
     if not isinstance(limit, int):
-        return "Input is not an integer!"
+        return None
     if limit < 1:
-        return "Input must be bigger than 0!"
-
-    def sum_proper_divisors(n):
-        return sum(fact for fact in range(1, n) if n % fact == 0)
-
+        return None
     amicables = set()
     for num in range(2, limit + 1):
         if num in amicables:
             continue
-        sum_fact = sum_proper_divisors(num)
-        sum_fact2 = sum_proper_divisors(sum_fact)
+        sum_fact = sum(fact for fact in range(1, num) if num % fact == 0)
+        sum_fact2 = sum(fact for fact in range(1, sum_fact) if sum_fact % fact == 0)
         if num == sum_fact2 and num != sum_fact:
-            amicables.update({num, sum_fact2})
-    return sum(amicables)
+            amicables.add(num)
+            amicables.add(sum_fact2)
+    return sum(amicables) if amicables else 0

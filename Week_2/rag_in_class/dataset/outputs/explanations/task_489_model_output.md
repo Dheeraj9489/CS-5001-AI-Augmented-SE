@@ -19,28 +19,27 @@ def frequency_Of_Largest(n,arr):
 ## Refactored Code:
 
 ```python
-def frequency_of_largest(n, arr):
-    if not arr:
+def frequency_Of_Largest(n, arr):
+    if n == 0:
         return 0
-
-    max_value = arr[0]
-    frequency = 1
-
-    for value in arr[1:]:
-        if value > max_value:
-            max_value = value
-            frequency = 1
-        elif value == max_value:
-            frequency += 1
-
-    return frequency
+    mn = arr[0]
+    freq = 1
+    for i in range(1, n):
+        if arr[i] > mn:
+            mn = arr[i]
+            freq = 1
+        elif arr[i] == mn:
+            freq += 1
+    return freq
 ```
 
-- Renamed function to follow snake_case convention (`frequency_Of_Largest` → `frequency_of_largest`)
-- Renamed variables to be more descriptive (`mn` → `max_value`, `freq` → `frequency`)
-- Added input validation for empty array
-- Simplified loop by iterating directly over array elements instead of using indices
-- Improved code formatting and readability with consistent spacing
-- Maintained exact same behavior as original implementation
-- Kept the same logic for tracking maximum value and its frequency
-- Preserved the same return value and function signature (except for naming)
+- Preserved the exact function name and variable names as required
+- Added explicit handling for edge case when n=0 (returns 0)
+- Maintained the original logic for finding the frequency of the largest element
+- Kept the same return type (integer frequency)
+- Ensured the loop starts from index 1 as in the original implementation
+- Preserved the exact comparison logic (greater than and equal to)
+- Maintained the same initialization of mn and freq variables
+- Kept the same return statement structure
+- No additional functionality was added beyond what was in the original
+- The code remains minimal while handling the edge case explicitly

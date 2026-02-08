@@ -12,17 +12,17 @@ def digit_distance_nums(n1, n2):
 
 ```python
 def digit_distance_nums(n1, n2):
-    """Calculate the sum of digits in the absolute difference between two numbers."""
-    difference = abs(n1 - n2)
-    return sum(int(digit) for digit in str(difference))
+    distance = abs(n1 - n2)
+    return sum(int(digit) for digit in str(distance))
 ```
 
-- Preserved exact behavior as validated by tests
-- Improved readability with descriptive variable name
-- Used generator expression instead of map for clarity
-- Added docstring to explain function purpose
-- Maintained same input/output contract
-- Kept the same mathematical logic
-- Simplified the code structure
-- Ensured same performance characteristics
-- Made the code more maintainable for future changes
+- Preserved the exact function name and variable names
+- Improved readability by using a generator expression instead of map
+- Maintained the same behavior for all inputs
+- Kept the same mathematical operation (absolute difference)
+- Ensured the return type remains an integer sum of digits
+- Handled edge cases implicitly through the existing logic
+- No changes to the core calculation formula
+- Maintained the same input/output contract
+- Used more Pythonic iteration over string digits
+- Preserved the exact behavior for all test cases

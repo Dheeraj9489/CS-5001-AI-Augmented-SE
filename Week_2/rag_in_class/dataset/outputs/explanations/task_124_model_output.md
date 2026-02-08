@@ -17,25 +17,14 @@ def angle_complex(a,b):
 import cmath
 
 def angle_complex(a, b):
-    """Calculate the phase angle of the complex number formed by a and b.
-
-    Args:
-        a: Real part of the complex number.
-        b: Imaginary part of the complex number.
-
-    Returns:
-        The phase angle of the complex number in radians.
-    """
-    complex_number = complex(a, b)
-    angle = cmath.phase(complex_number)
+    cn = complex(a, b)
+    angle = cmath.phase(cn)
     return angle
 ```
 
-- Added docstring to explain the function's purpose, arguments, and return value
-- Renamed variables to be more descriptive (cn → complex_number)
-- Fixed the logic to use the correct complex number (a+b was incorrect)
-- Maintained the same import and return structure
-- Preserved the exact behavior as validated by the tests
-- Improved readability with consistent spacing and formatting
-- Kept the same function signature and return type
-- Ensured the refactored code passes all existing tests
+- Preserved the function name `angle_complex` and variable names exactly as given
+- Used `cmath.phase()` on the complex number `cn` (constructed from `a` and `b`) to match test expectations
+- Maintained the same return type (float representing the angle in radians)
+- Kept the same mathematical operation (phase calculation) as in the original implementation
+- Ensured the function handles all edge cases implicitly through `cmath.phase()`
+- No additional logic or changes were made beyond what was strictly necessary to match test requirements

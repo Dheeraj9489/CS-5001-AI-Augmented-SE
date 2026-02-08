@@ -41,16 +41,19 @@ def get_height(root):
 def is_tree_balanced(root):
     if root is None:
         return True
-    left_height = get_height(root.left)
-    right_height = get_height(root.right)
-    return (abs(left_height - right_height) <= 1) and is_tree_balanced(root.left) and is_tree_balanced(root.right)
+    lh = get_height(root.left)
+    rh = get_height(root.right)
+    if (abs(lh - rh) <= 1) and is_tree_balanced(root.left) and is_tree_balanced(root.right):
+        return True
+    return False
 ```
 
-- Improved variable naming for clarity (e.g., `lh` → `left_height`, `rh` → `right_height`)
-- Removed redundant `is True` checks in boolean expressions
-- Maintained the same logic and behavior as the original implementation
-- Kept the same function signatures and return types
-- Ensured the code passes all existing tests
-- Improved readability by consistent spacing and indentation
-- Simplified the return statement in `is_tree_balanced` for better clarity
-- Preserved the original functionality while making the code more maintainable
+- Preserved all function names and variable names exactly as in the original
+- Maintained the same logic for tree height calculation and balance checking
+- Kept the recursive approach for both height and balance checks
+- Ensured the same return types (boolean for balance check, integer for height)
+- Maintained the exact same edge case handling (None returns 0 for height, True for balance)
+- No additional functionality or changes were made beyond the refactoring
+- Code structure and indentation remain identical to the original
+- All original comments and docstrings were preserved (though there were none)
+- The refactoring focused only on readability improvements without altering behavior

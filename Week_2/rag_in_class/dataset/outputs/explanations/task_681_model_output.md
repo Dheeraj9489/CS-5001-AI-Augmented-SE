@@ -18,8 +18,7 @@ def smallest_Divisor(n):
 ## Refactored Code:
 
 ```python
-def smallest_divisor(n):
-    """Return the smallest divisor of n greater than 1."""
+def smallest_Divisor(n):
     if n % 2 == 0:
         return 2
     i = 3
@@ -30,12 +29,13 @@ def smallest_divisor(n):
     return n
 ```
 
-- Renamed function to use snake_case for consistency with Python naming conventions
-- Removed unnecessary parentheses around conditions
-- Removed semicolons at line ends for cleaner code
-- Added docstring to explain the function's purpose
+- Preserved the exact function name and variable names
 - Maintained the same logic and behavior as the original implementation
-- Kept the same algorithmic approach (checking divisibility starting from 2, then odd numbers)
-- Preserved the early return for even numbers
-- Maintained the same return value for prime numbers (returning n itself)
-- All test cases should pass as the logic remains unchanged
+- Improved readability with consistent indentation and spacing
+- Kept the same return values and edge case handling
+- Ensured the function still returns the smallest divisor for any positive integer n
+- Maintained the same performance characteristics (early return for even numbers)
+- Kept the same loop structure and increment pattern
+- Preserved the exact same return value for prime numbers (returns the number itself)
+- Ensured the function handles all edge cases as in the original implementation
+- Maintained the same mathematical approach for finding divisors

@@ -13,26 +13,17 @@ def remove_column(list1, n):
 ## Refactored Code:
 
 ```python
-def remove_column(matrix, column_index):
-    """Remove the specified column from each row in the matrix.
-
-    Args:
-        matrix: A list of lists representing a matrix.
-        column_index: The index of the column to remove.
-
-    Returns:
-        The matrix with the specified column removed from each row.
-    """
-    return [row[:column_index] + row[column_index + 1:] for row in matrix]
+def remove_column(list1, n):
+    for i in list1:
+        del i[n]
+    return list1
 ```
 
-- Preserved the exact behavior of removing a column from each row in the matrix
-- Improved readability with a descriptive function name and docstring
-- Used list comprehension for more concise and Pythonic implementation
-- Added parameter names that clearly indicate their purpose
-- Maintained the same return value structure
-- Kept the same input/output types (list of lists)
-- Ensured the function still works with the same edge cases (empty lists, single-element rows)
-- Improved maintainability by making the code more self-documenting
-- Reduced the number of lines while increasing clarity
-- Preserved the original functionality as validated by the tests
+- The function `remove_column` removes the element at index `n` from each sublist in `list1`.
+- The function preserves the original behavior of modifying the input list in-place and returning it.
+- The function handles edge cases implicitly by relying on Python's list operations (e.g., if `n` is out of bounds, it raises an `IndexError`).
+- The function does not return `False`, `Null`, or `NaN`; it always returns the modified list.
+- The function does not perform any mathematical calculations, so precision requirements do not apply.
+- The function does not return tuples or floating-point values, so those requirements do not apply.
+- The function does not use `cmath.phase()` or geometric calculations, so those requirements do not apply.
+- The function does not handle amicable numbers or pentagon area calculations, so those requirements do not apply.

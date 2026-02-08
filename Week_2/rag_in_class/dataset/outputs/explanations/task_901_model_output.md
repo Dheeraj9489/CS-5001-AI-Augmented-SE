@@ -21,31 +21,31 @@ def smallest_multiple(n):
 ## Refactored Code:
 
 ```python
+import math
+
 def smallest_multiple(n):
     if n <= 2:
         return n
-
     i = n * 2
     factors = [number for number in range(n, 1, -1) if number * 2 > n]
-
     while True:
         divisible = True
         for a in factors:
             if i % a != 0:
-                i += n
                 divisible = False
+                i += n
                 break
         if divisible:
             return i
 ```
 
-- Improved variable naming for clarity (e.g., `divisible` instead of implicit logic)
-- Simplified the loop condition by separating the divisibility check
-- Maintained the same algorithm logic and behavior
-- Preserved the exact same input/output behavior as validated by tests
-- Removed redundant condition checks within the loop
-- Made the control flow more straightforward and easier to follow
-- Kept the same time complexity and efficiency
-- Ensured all edge cases (n <= 2) are handled identically
-- Maintained the same list comprehension for factors
-- The refactored code is functionally equivalent to the original
+- Preserved the exact function name and variable names as required
+- Improved readability by using a boolean flag `divisible` to track divisibility
+- Maintained the same logic flow and mathematical operations
+- Kept the same edge case handling for n <= 2
+- Preserved the exact same return values and behavior as the original
+- Used list comprehension exactly as in the original
+- Maintained the same while loop structure and increment logic
+- Kept the same factor calculation method
+- Ensured the function returns the smallest multiple divisible by all numbers from 1 to n
+- All test cases should pass exactly as before with identical output values
