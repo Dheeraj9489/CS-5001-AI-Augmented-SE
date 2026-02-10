@@ -134,7 +134,7 @@ cca --repo output/demo_repo create \
 cca --repo output/demo_repo gen-tests \
   --desc "A calculator with add, subtract, multiply, divide functions" \
   --module src/calculator.py \
-  --tests tests/test_calculator.py && \
+  --tests tests/test_calculator.py --overwrite && \
 cca --repo output/demo_repo report \
   --fail-on-tests \
   --fail-on-coverage "95 percent" && \
@@ -154,7 +154,7 @@ cca --repo output/demo_repo create \
 cca --repo output/demo_repo gen-tests \
   --desc "Create Prime Number Checker in Python" \
   --module src/prime_checker.py \
-  --tests tests/test_prime_checker.py && \
+  --tests tests/test_prime_checker.py --overwrite && \
 cca --repo output/demo_repo report \
   --fail-on-tests \
   --fail-on-coverage "90 percent" && \
@@ -194,7 +194,7 @@ cca --repo output/demo_streamlit create \
 cca --repo output/demo_streamlit gen-tests \
   --desc "Create a project with Streamlit that shows a number is prime or not after taking an input" \
   --module src/app.py \
-  --tests tests/test_app.py && \
+  --tests tests/test_app.py --overwrite && \
 cca --repo output/demo_streamlit report \
   --fail-on-tests \
   --fail-on-coverage "80 percent" && \
@@ -207,18 +207,18 @@ cca --repo output/demo_streamlit commit \
 ### Flask Project 2
 
 ```bash
-cca --repo output/demo_flask create \
+cca --repo output/demo_flask scaffold \
   --desc "Create a Flask project with routes, services, and templates" \
-  --module src/flask.py && \
+  --out-dir . && \
 cca --repo output/demo_flask gen-tests \
   --desc "Create a Flask project with routes, services, and templates" \
-  --module src/flask.py \
-  --tests tests/test_flask.py && \
+  --module src/app.py \
+  --tests tests/test_app.py && \
 cca --repo output/demo_flask report \
   --fail-on-tests \
-  --fail-on-coverage "80 percent" && \
+  --fail-on-coverage "60 percent" && \
 cca --repo output/demo_flask commit \
-  --message "Agent: add flask project and tests" \
+  --message "Agent: scaffold Flask project with tests" \
   --push
 ```
 

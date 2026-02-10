@@ -135,6 +135,7 @@ class Agent:
     def create_tests(self, desc: str, module_path: str, tests_path: str) -> RunResult:
         module_code = self.tools.read(module_path)
         existing_tests = self.tools.read(tests_path)
+
         raw = self.llm.generate(tests_prompt(desc, module_path, module_code, existing_tests))
         content = strip_code_fences(raw)
         print(content)
@@ -150,13 +151,11 @@ class Agent:
         cov_json_path = self.repo / ".coverage.json"
         cmd = f"coverage run -m pytest -q && coverage json -o {cov_json_path.name}"
         ok, out = self.tools.run(cmd)
-        print(ok)
         print(out)
         total: float = 0.0
         data: Dict[str, Any] = {}
         if cov_json_path.exists():
             total, data = parse_coverage_total(cov_json_path)
-
         return {
             "ok": ok,
             "command": cmd,
@@ -176,7 +175,6 @@ class Agent:
     ) -> RunResult:
         result = self._run_tests_with_coverage()
         cov_data = result.get("coverage_data", {}) or {}
-        print(result)
         module_summary: Dict[str, Any] = {}
         if module_path:
             module_summary = self._module_coverage_summary(cov_data, module_path)
@@ -187,7 +185,7 @@ class Agent:
             "module_path": module_path,
             "command": result.get("command"),
             "tests_passed": bool(result.get("ok")),
-            "total_coverage_percent": float(result.get("total_coverage_percent") or 0.0),
+            "total_coverage_percent": float(result.get("total_coverage_percent")),
             "module_coverage": module_summary,
             "pytest_output": clamp(str(result.get("pytest_output") or ""), 20000),
         }

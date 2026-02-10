@@ -45,6 +45,12 @@ def test_is_prime_large_prime():
 def test_is_prime_large_non_prime():
     assert not is_prime(7920)
 
+def test_is_prime_even_number():
+    assert not is_prime(100)
+
+def test_is_prime_odd_non_prime():
+    assert not is_prime(99)
+
 def test_main_prime():
     with patch('streamlit.number_input', return_value=7):
         with patch('streamlit.button', return_value=True):
@@ -63,8 +69,8 @@ def test_main_non_prime():
                     mock_success.assert_not_called()
                     mock_error.assert_called_once_with("8 is not a prime number.")
 
-def test_main_no_button_click():
-    with patch('streamlit.number_input', return_value=5):
+def test_main_button_not_clicked():
+    with patch('streamlit.number_input', return_value=7):
         with patch('streamlit.button', return_value=False):
             with patch('streamlit.success') as mock_success:
                 with patch('streamlit.error') as mock_error:
