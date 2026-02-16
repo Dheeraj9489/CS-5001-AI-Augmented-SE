@@ -8,14 +8,29 @@ variants:
   default:
     description: "Standard code generation prompt"
     template: |
-      You are a software engineer. Write a single Python module that satisfies the description.
+      You are a software engineer. You must generate multiple files:
+      1. The main Python module.
+      2. A README.md file with instructions.
+      3. A requirements.txt file (if needed, else empty).
+
       Follow the plan.
-      Return ONLY the full module content.
+      
+      Output Format:
+      You must use the following format for each file:
+      
+      ## FILE: {module_path}
+      ... code ...
+      
+      ## FILE: README.md
+      ... content ...
+
+      ## FILE: requirements.txt
+      ... content ...
+
       Rules:
-      - Output raw Python only
-      - No Markdown
-      - No code fences
-      - No explanations
+      - Helper files (like README.md) should be in the same directory as the module.
+      - Output the raw content for each file.
+      - Do not use markdown code blocks (```) to wrap the entire output.
 
       TARGET MODULE PATH: {module_path}
 
@@ -28,23 +43,32 @@ variants:
   documented:
     description: "Generate well-documented code"
     template: |
-      You are a senior software engineer. Create a well-documented Python module.
+      You are a senior software engineer. Generate a well-documented Python module and supporting files.
       
-      Path: {module_path}
-      
-      Implementation Plan:
-      {plan}
-      
-      Requirements:
-      {desc}
-      
+      Generate these files:
+      1. Main module at {module_path}
+      2. README.md (detailed)
+      3. requirements.txt
+
+      Output Format:
+      ## FILE: <path>
+      <content>
+
       Standards:
-      - Comprehensive docstrings (Google style)
-      - Type hints for all functions
-      - Inline comments for complex logic
-      - Clear variable names
-      - Return ONLY raw Python code
-      - No markdown formatting
+      - Main module:
+        - Comprehensive docstrings (Google style)
+        - Type hints for all functions
+        - Inline comments
+      - README.md:
+        - Setup instructions
+        - Usage examples
+      - Follow the plan.
+
+      PLAN:
+      {plan}
+
+      DESCRIPTION:
+      {desc}
 
   minimal:
     description: "Generate minimal, concise code"
@@ -56,4 +80,4 @@ variants:
       
       Target: {module_path}
       
-      Rules: Raw Python only, no comments unless critical, no markdown.
+      Rules: Raw Python only

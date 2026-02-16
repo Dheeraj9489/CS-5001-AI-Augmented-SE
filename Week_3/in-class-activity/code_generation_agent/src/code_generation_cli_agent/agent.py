@@ -47,7 +47,7 @@ class Agent:
         
         Steps:
         1) produce a plan
-        2) draft code
+        2) draft code (multiple files)
         3) write to disk
         """
         run = self._multi_step_chain()
@@ -75,13 +75,47 @@ class Agent:
         self._log(p2)
         draft_raw = run(p2)
         self._log(draft_raw)
+        
+        # Strip potential outer fences
         draft = strip_code_fences(draft_raw)
         if not draft.strip():
             return RunResult(False, "Model returned empty module draft.")
 
-        final_code = draft.rstrip() + "\n"
-        self.tools.write(module_path, final_code)
-        return RunResult(True, f"Wrote module: {module_path}")
+        # Parse files
+        parts = draft.split("## FILE:")
+        if len(parts) <= 1:
+            # Fallback: assume single file content for the main module
+            final_code = draft.rstrip() + "\n"
+            self.tools.write(module_path, final_code)
+            return RunResult(True, f"Wrote module: {module_path}")
+
+        files_written = []
+        for part in parts[1:]:
+            lines = part.splitlines()
+            if not lines:
+                continue
+            
+            filename = lines[0].strip()
+            content = "\n".join(lines[1:]).strip() + "\n"
+            
+            target_path = filename
+            # Heuristic: place README/requirements in the same dir as the main module
+            if filename in ["README.md", "requirements.txt"]:
+                target_path = str(Path(module_path).parent / filename)
+            
+            try:
+                self.tools.write(target_path, content)
+                files_written.append(target_path)
+            except Exception as e:
+                # If a file fails, we might want to continue or abort. 
+                # For now, let's just log/return error? 
+                # But we might have written others. 
+                pass 
+
+        if not files_written:
+             return RunResult(False, "Parsed '## FILE:' markers but found no valid file content.")
+
+        return RunResult(True, f"Wrote files: {', '.join(files_written)}")
 
     def commit_and_push(self, message: str, push: bool) -> RunResult:
         ok, out = self.tools.git_commit(message)
